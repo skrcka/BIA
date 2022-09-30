@@ -88,7 +88,7 @@ func = {
     "sphere": sphere,
     "michalewicz": michalewicz,
     "rastrigin": rastrigin,
-    "rosenbrock": rosenbrock
+    "rosenbrock": rosenbrock,
 }
 
 def return_value_function(input_data,name_function):
