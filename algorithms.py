@@ -29,16 +29,16 @@ def hill_climbing(name_function, mux, muy, sigma, size, iterat):
     cord_X = generated_x[0]
     cord_Y = generated_y[0]
     for i, j in zip(generated_x, generated_y):
-        min = return_value_function([i, j], name_function)
-        point_list.append([i, j, min])
-        if min < tmp:
-            tmp = min
+        k = return_value_function([i, j], name_function)
+        if k < tmp:
+            tmp = k
             cord_X = i
             cord_Y = j
+    point_list.append([cord_X, cord_Y, tmp])
     if iterat == 1:
-        return [cord_X, cord_Y, tmp]
+        return point_list
     else:
-        return hill_climbing(name_function, cord_X, cord_Y, sigma, size, iterat - 1)
+        return point_list + hill_climbing(name_function, cord_X, cord_Y, sigma, size, iterat - 1)
     
 functions = {
     'blind_search': blind_search,

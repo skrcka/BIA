@@ -5,8 +5,8 @@ from func_file import func
 
 def gen_points(algorithm_name: str, function_name: str):
     points = []
+    gen_count = 10
     if algorithm_name == 'blind_search':
-        gen_count = 10
         point_count = 20
         allpoints = []
         for i in range(gen_count):
@@ -18,10 +18,13 @@ def gen_points(algorithm_name: str, function_name: str):
             if not total_min_point or min_point[2] < total_min_point[2]:
                 total_min_point = min_point
             points.append(total_min_point)
+    elif algorithm_name == 'hill_climbing':
+        points = get_function('hill_climbing')(function_name, 5, 5, 0.8, 50, gen_count)
+
     return points
 
 if __name__ == '__main__':
-    algorithm_name = 'blind_search'
+    algorithm_name = 'hill_climbing'
     for function_name in func:
         points = gen_points(algorithm_name, function_name)
         show_funtion_graph(function_name, points)
