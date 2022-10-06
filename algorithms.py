@@ -1,5 +1,6 @@
 import random
 import numpy as np
+import math
 
 from static_data import get_max_range, get_min_range
 from func_file import return_value_function
@@ -23,6 +24,10 @@ def blind_search(name_function: str, size_random_search: int):
 
 def hill_climbing(name_function, mux, muy, sigma, size, iterat):
     point_list = []
+    if not mux:
+        mux = random.uniform(get_min_range(name_function), get_max_range(name_function))
+    if not muy:
+        muy = random.uniform(get_min_range(name_function), get_max_range(name_function))
     generated_x = np.random.normal(mux, sigma, size)
     generated_y = np.random.normal(muy, sigma, size)
     tmp = return_value_function([mux, muy], name_function)
@@ -39,10 +44,44 @@ def hill_climbing(name_function, mux, muy, sigma, size, iterat):
         return point_list
     else:
         return point_list + hill_climbing(name_function, cord_X, cord_Y, sigma, size, iterat - 1)
+
+def simulated_annealing(name_function, mux, muy, sigma, size, temperature_0):
+    temperature_decrease = lambda temperature: temperature * 0.95
+    temperature_min = 0.1
+    point_list = []
+    if not mux:
+        mux = random.uniform(get_min_range(name_function), get_max_range(name_function))
+    if not muy:
+        muy = random.uniform(get_min_range(name_function), get_max_range(name_function))
+    generated_x = np.random.normal(mux, sigma, size)
+    generated_y = np.random.normal(muy, sigma, size)
+    tmp = return_value_function([mux, muy], name_function)
+    cord_X = generated_x[0]
+    cord_Y = generated_y[0]
+
+    while temperature_0 > temperature_min:
+        generated_x = np.random.normal(cord_X, sigma, size)
+        generated_y = np.random.normal(cord_Y, sigma, size)
+        for i, j in zip(generated_x, generated_y):
+            m = return_value_function([i, j], name_function)
+            if m < tmp:
+                tmp = m
+                cord_X = i
+                cord_Y = j
+            else:
+                r = random.uniform(0, 1)
+                if r > (math.exp(tmp / temperature_0)) - 1:
+                    tmp = m
+                    cord_X = i
+                    cord_Y = j
+            point_list.append([cord_X, cord_Y, tmp])
+            temperature_0 = temperature_decrease(temperature_0)
+    return point_list
     
 functions = {
     'blind_search': blind_search,
     'hill_climbing': hill_climbing,
+    'simulated_annealing': simulated_annealing,
 }
 
 def get_function(function_name: str):
