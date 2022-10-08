@@ -37,6 +37,7 @@ def show_funtion_graph(name_function: str, points: list or None = None):
             ax.set_zlabel('Z')
             
             point = points[i]
+            print(point[2])
             ax.scatter(point[0], point[1], point[2], c='black')
 
             return ax

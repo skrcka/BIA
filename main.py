@@ -19,14 +19,14 @@ def gen_points(algorithm_name: str, function_name: str):
                 total_min_point = min_point
             points.append(total_min_point)
     elif algorithm_name == 'hill_climbing':
-        points = get_function('hill_climbing')(function_name, None, None, 0.8, 50, gen_count)
+        points = get_function('hill_climbing')(function_name, None, None, None, 50, gen_count)
     elif algorithm_name == 'simulated_annealing':
-        points = get_function('simulated_annealing')(function_name, None, None, 0.8, 1, 200)
+        points = get_function('simulated_annealing')(function_name, None, None, None, 1, gen_count*10)
 
     return points
 
 if __name__ == '__main__':
-    algorithm_name = 'hill_climbing' # 'simulated_annealing'
+    algorithm_name = 'simulated_annealing'
     for function_name in func:
         points = gen_points(algorithm_name, function_name)
         show_funtion_graph(function_name, points)
