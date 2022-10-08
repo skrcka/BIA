@@ -25,12 +25,17 @@ def show_funtion_graph(name_function: str, points: list or None = None):
     ax.set_ylabel('Y')
     ax.set_zlabel('Z')
 
+    active_point = None
+
     if points:
         def animate(i, points):
             print(f'frame: {i}')
-            ax.clear()
+            nonlocal active_point
+            if active_point:
+                active_point.remove()
+            #ax.clear()
 
-            ax.plot_trisurf(X, Y, Z, cmap='inferno', edgecolor='none')
+            #ax.plot_trisurf(X, Y, Z, cmap='inferno', edgecolor='none')
 
             ax.set_xlabel('X')
             ax.set_ylabel('Y')
@@ -38,7 +43,7 @@ def show_funtion_graph(name_function: str, points: list or None = None):
             
             point = points[i]
             print(point[2])
-            ax.scatter(point[0], point[1], point[2], c='black')
+            active_point = ax.scatter(point[0], point[1], point[2], c='black')
 
             return ax
         ani = FuncAnimation(fig, animate, frames=len(points), interval=400, repeat=True, fargs=[points])
