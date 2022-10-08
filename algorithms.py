@@ -47,7 +47,7 @@ def hill_climbing(name_function, mux, muy, sigma, size, iterat):
     else:
         return point_list + hill_climbing(name_function, cord_X, cord_Y, sigma, size, iterat - 1)
 
-def simulated_annealing(name_function, mux, muy, sigma, size, temperature):
+def simulated_annealing(name_function, mux, muy, sigma, size, temperature, iterat):
     temperature_decrease = lambda temperature: temperature * 0.95
     temperature_min = 0.1
     point_list = []
@@ -79,6 +79,8 @@ def simulated_annealing(name_function, mux, muy, sigma, size, temperature):
                     cord_X = i
                     cord_Y = j
             point_list.append([cord_X, cord_Y, tmp])
+            if len(point_list) >= iterat:
+                return point_list
             temperature = temperature_decrease(temperature)
     return point_list
     

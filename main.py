@@ -21,7 +21,7 @@ def gen_points(algorithm_name: str, function_name: str):
     elif algorithm_name == 'hill_climbing':
         points = get_function('hill_climbing')(function_name, None, None, None, 50, gen_count)
     elif algorithm_name == 'simulated_annealing':
-        points = get_function('simulated_annealing')(function_name, None, None, None, 1, 200)
+        points = get_function('simulated_annealing')(function_name, None, None, None, 1, 200, gen_count * 10)
 
     return points
 
