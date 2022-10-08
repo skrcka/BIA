@@ -54,10 +54,9 @@ def schwefel(input_data):
 
 
 def zakharov(input_data):
-    sum1 = [item ** 2 for item in input_data]
-    sum2 = [(0.5 * i + 1 * item) ** 2 for i, item in enumerate(input_data)]
-    sum3 = [(0.5 * i + 1 * item) ** 4 for i, item in enumerate(input_data)]
-    result = sum(sum1) + sum(sum2) + sum(sum3)
+    sum1 = sum([item**2 for item in input_data])
+    sum2 = sum([(0.5 * i * item) for i, item in enumerate(input_data, start=1)])
+    result = sum1 + sum2**2 + sum2**4
     return result
 
 

@@ -30,3 +30,6 @@ if __name__ == '__main__':
     for function_name in func:
         points = gen_points(algorithm_name, function_name)
         show_funtion_graph(function_name, points)
+    #function_name = 'zakharov'
+    #points = gen_points(algorithm_name, function_name)
+    #show_funtion_graph(function_name, points)
