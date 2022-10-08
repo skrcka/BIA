@@ -74,7 +74,7 @@ def simulated_annealing(name_function, mux, muy, sigma, size, temperature):
                 cord_Y = j
             else:
                 r = random.uniform(0, 1)
-                if r > (math.exp(tmp / temperature)) - 1:
+                if r < math.exp(-(m - tmp) / temperature):
                     tmp = m
                     cord_X = i
                     cord_Y = j
