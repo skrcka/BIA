@@ -1,6 +1,6 @@
-clamp
-sigma podle fce
+clamp- fixed
+sigma podle fce - fixed ?
 step podle fce - fixed
-rosenbrock
+rosenbrock - fixed
 fce celkove checknout
 uniformni rozdeleni - fixed
