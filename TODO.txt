@@ -1,6 +1,6 @@
 clamp
 sigma podle fce
-step podle fce
+step podle fce - fixed
 rosenbrock
 fce celkove checknout
 uniformni rozdeleni - fixed
