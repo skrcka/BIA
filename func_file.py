@@ -40,10 +40,10 @@ def griewank(input_data):
 
 
 def rastrigin(input_data):
-    sum = 0
-    for item in input_data:
-        sum = sum + (item ** 2 + - 10 * math.cos(2 * np.pi * item))
-    return 10 * len(input_data) + sum
+    sum = 10 * len(input_data)
+    for p in input_data:
+        sum += p ** 2 - 10 * np.cos(2 * math.pi * p)
+    return sum
 
 
 def schwefel(input_data):
@@ -66,16 +66,16 @@ def sphere(input_data):
 
 
 def michalewicz(input_data):
+    sum = 0
     m = 10
-    sum1 = 0
-    for i, item in enumerate(input_data):
-        sum1 = sum1 + ((math.sin(item)) * (((math.sin((i + 1) * item ** 2)) / math.pi) ** (2 * m)))
-    return -(sum1)
+    for i, p in enumerate(input_data, start=1):
+        sum += np.sin(p) * np.sin((i * p ** 2) / math.pi) ** (2 * m)
+    return -sum
 
 def rosenbrock(input_data):
     sum = 0
-    for i, p in enumerate(input_data):
-        sum += 100 * (input_data[i] - p ** 2) ** 2 + (p - 1) ** 2
+    for i, p in enumerate(input_data[:-1]):
+        sum += 100 * (input_data[i + 1] - p ** 2) ** 2 + (p - 1) ** 2
     return sum
 
 func = {
