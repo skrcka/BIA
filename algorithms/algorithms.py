@@ -4,6 +4,7 @@ import math
 
 from static_data import get_max_range, get_min_range, get_sigma
 from func_file import return_value_function
+from algorithms.ga_tsp import *
 
 
 def blind_search(name_function: str, size_random_search: int):
@@ -49,7 +50,7 @@ def hill_climbing(name_function, mux, muy, sigma, size, iterat):
 
 def simulated_annealing(name_function, mux, muy, sigma, size, temperature, iterat):
     temperature_decrease = lambda temperature: temperature * 0.95
-    temperature_min = 0.1
+    temperature_min = 0.01
     point_list = []
     if not mux:
         mux = random.uniform(get_min_range(name_function), get_max_range(name_function))
@@ -81,13 +82,21 @@ def simulated_annealing(name_function, mux, muy, sigma, size, temperature, itera
             point_list.append([cord_X, cord_Y, tmp])
             if len(point_list) >= iterat:
                 return point_list
-            temperature = temperature_decrease(temperature)
+        temperature = temperature_decrease(temperature)
     return point_list
-    
+
+def ga_tsp(filename):
+    list_x = get_list_values(filename)
+    matrix = create_matrix(list_x)
+    final_list = final_population(40, 10000, matrix)
+    final_route = get_best_route_in_population(final_list, matrix)
+    show_final_graph(final_route, filename)
+
 functions = {
     'blind_search': blind_search,
     'hill_climbing': hill_climbing,
     'simulated_annealing': simulated_annealing,
+    'ga_tsp': ga_tsp,
 }
 
 def get_function(function_name: str):

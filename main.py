@@ -1,5 +1,5 @@
 from show_3D_graph import show_funtion_graph
-from algorithms import get_function
+from algorithms.algorithms import get_function
 from func_file import func
 
 
@@ -21,15 +21,19 @@ def gen_points(algorithm_name: str, function_name: str):
     elif algorithm_name == 'hill_climbing':
         points = get_function('hill_climbing')(function_name, None, None, None, 50, gen_count)
     elif algorithm_name == 'simulated_annealing':
-        points = get_function('simulated_annealing')(function_name, None, None, None, 1, 200, gen_count * 10)
+        points = get_function('simulated_annealing')(function_name, None, None, None, 1, 20, gen_count * 10)
 
     return points
 
 if __name__ == '__main__':
-    algorithm_name = 'simulated_annealing'
-    for function_name in func:
-        points = gen_points(algorithm_name, function_name)
-        show_funtion_graph(function_name, points)
+    algorithm_name = 'simulated_annealing' # simulated_annealing ga_tsp
+    if algorithm_name != 'ga_tsp':
+        for function_name in func:
+            points = gen_points(algorithm_name, function_name)
+            show_funtion_graph(function_name, points)
+    else:
+        filename = 'datasets/tps_dataset.txt'
+        get_function(algorithm_name)(filename)
     #function_name = 'rosenbrock'
     #points = gen_points(algorithm_name, function_name)
     #show_funtion_graph(function_name, points)
