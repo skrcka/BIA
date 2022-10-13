@@ -19,7 +19,7 @@ def show_funtion_graph(name_function: str, points: list or None = None):
     fig = plt.figure()
     ax = plt.axes(projection='3d')
 
-    ax.plot_trisurf(X, Y, Z, cmap='inferno', edgecolor='none')
+    ax.plot_trisurf(X, Y, Z, alpha=0.6, edgecolor='none')
 
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
@@ -33,9 +33,6 @@ def show_funtion_graph(name_function: str, points: list or None = None):
             nonlocal active_point
             if active_point:
                 active_point.remove()
-            #ax.clear()
-
-            #ax.plot_trisurf(X, Y, Z, cmap='inferno', edgecolor='none')
 
             ax.set_xlabel('X')
             ax.set_ylabel('Y')
@@ -43,7 +40,7 @@ def show_funtion_graph(name_function: str, points: list or None = None):
             
             point = points[i]
             print(point[2])
-            active_point = ax.scatter(point[0], point[1], point[2], c='black')
+            active_point = ax.scatter(point[0], point[1], point[2], c='red')
 
             return ax
         ani = FuncAnimation(fig, animate, frames=len(points), interval=400, repeat=True, fargs=[points])
