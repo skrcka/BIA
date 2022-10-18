@@ -1,7 +1,7 @@
 from show_3D_graph import show_funtion_graph
 from algorithms.algorithms import get_function
 from func_file import func
-from algorithms.ga_tsp import get_list_values
+from algorithms.ga_tsp import get_list_values, generate_list_values
 from show_2D_graph import show_2D_graph
 
 
@@ -40,7 +40,8 @@ if __name__ == '__main__':
         show_final_graph(final_route, point_list)
     else:
         filename = 'datasets/tps_dataset.txt'
-        point_list = get_list_values(filename)
+        #point_list = get_list_values(filename)
+        point_list = generate_list_values()
         final_routes = get_function(algorithm_name)(point_list)
         show_2D_graph(final_routes, point_list)
     #function_name = 'rosenbrock'

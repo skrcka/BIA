@@ -2,9 +2,16 @@ import numpy as np
 import math
 import random
 import matplotlib.pyplot as plt
+import random
 
 
 FILENAME = "datasets/tps_dataset.txt"
+
+def generate_list_values():
+    point_list = []
+    for i in range(1, 21):
+        point_list.append([i, random.randint(0, 300), random.randint(0, 300)])
+    return point_list
 
 def get_list_values(filename):
     with open(filename, 'r') as f:
