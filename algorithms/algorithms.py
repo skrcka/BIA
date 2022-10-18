@@ -85,18 +85,28 @@ def simulated_annealing(name_function, mux, muy, sigma, size, temperature, itera
         temperature = temperature_decrease(temperature)
     return point_list
 
-def ga_tsp(filename):
-    list_x = get_list_values(filename)
-    matrix = create_matrix(list_x)
-    final_list = final_population(40, 10000, matrix)
-    final_route = get_best_route_in_population(final_list, matrix)
-    show_final_graph(final_route, filename)
+def ga_tsp_anim(point_list):
+    print(point_list)
+    distance_matrix = create_distance_matrix(point_list)
+    final_list = get_population_anim(40, 10000, distance_matrix)
+    final_routes = []
+    for pop in final_list:
+        final_routes.append(get_best_route_in_population(pop, distance_matrix))
+    return final_routes
+
+def ga_tsp(point_list):
+    print(point_list)
+    distance_matrix = create_distance_matrix(point_list)
+    final_list = final_population(40, 10000, distance_matrix)
+    routes = get_best_route_in_population(final_list, distance_matrix)
+    return routes
 
 functions = {
     'blind_search': blind_search,
     'hill_climbing': hill_climbing,
     'simulated_annealing': simulated_annealing,
     'ga_tsp': ga_tsp,
+    'ga_tsp_anim': ga_tsp_anim,
 }
 
 def get_function(function_name: str):
