@@ -62,11 +62,11 @@ def mutation(x):
 
 def cross_population_gen(list_A, list_B):
     result_list = []
-    for i in [0, 1, 2, 3, 4, 5, 6, 13, 14, 15, 16, 17, 18, 19]:
-        result_list.append(list_A[i])
+    cross_point = random.randint(1, 19)
+    result_list = list_A[:cross_point]
     for i in range(len(list_A)):
         if list_B[i] not in result_list:
-            result_list.insert(7, list_B[i])
+            result_list.append(list_B[i])
     result_list = mutation(result_list)
     return result_list
 
