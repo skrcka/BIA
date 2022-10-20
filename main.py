@@ -24,11 +24,13 @@ def gen_points(algorithm_name: str, function_name: str):
         points = get_function('hill_climbing')(function_name, None, None, None, 50, gen_count)
     elif algorithm_name == 'simulated_annealing':
         points = get_function('simulated_annealing')(function_name, None, None, None, 1, 20, gen_count * 10)
+    elif algorithm_name == 'differential_evolution':
+        points = get_function('differential_evolution')(function_name)
 
     return points
 
 if __name__ == '__main__':
-    algorithm_name = 'ga_tsp_anim' # simulated_annealing ga_tsp
+    algorithm_name = 'differential_evolution' # simulated_annealing ga_tsp
     if algorithm_name not in ('ga_tsp', 'ga_tsp_anim'):
         for function_name in func:
             points = gen_points(algorithm_name, function_name)

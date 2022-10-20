@@ -5,6 +5,7 @@ import math
 from static_data import get_max_range, get_min_range, get_sigma
 from func_file import return_value_function
 from algorithms.ga_tsp import *
+from algorithms.differential_evolution import *
 
 
 def blind_search(name_function: str, size_random_search: int):
@@ -101,12 +102,23 @@ def ga_tsp(point_list):
     routes = get_best_route_in_population(final_list, distance_matrix)
     return routes
 
+def differential_evolution(function_name):
+    DIMENSIONS = 2
+    POPSIZE = 20
+    MUTATION = 0.5
+    GENERATIONS = 100
+    SCALING_VECTOR = 0.5
+    final_points, all_points = de(function_name, DIMENSIONS, POPSIZE, GENERATIONS, SCALING_VECTOR)
+    # show_3D_graph.show_graph_with_searched_point_3D(FUNC, final_points)
+    return all_points
+
 functions = {
     'blind_search': blind_search,
     'hill_climbing': hill_climbing,
     'simulated_annealing': simulated_annealing,
     'ga_tsp': ga_tsp,
     'ga_tsp_anim': ga_tsp_anim,
+    'differential_evolution': differential_evolution,
 }
 
 def get_function(function_name: str):
