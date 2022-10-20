@@ -89,7 +89,7 @@ def simulated_annealing(name_function, mux, muy, sigma, size, temperature, itera
 def ga_tsp_anim(point_list):
     print(point_list)
     distance_matrix = create_distance_matrix(point_list)
-    final_list = get_population_anim(40, 10000, distance_matrix)
+    final_list = get_population_anim(100, 500, distance_matrix)
     final_routes = []
     for pop in final_list:
         final_routes.append(get_best_route_in_population(pop, distance_matrix))
@@ -98,7 +98,7 @@ def ga_tsp_anim(point_list):
 def ga_tsp(point_list):
     print(point_list)
     distance_matrix = create_distance_matrix(point_list)
-    final_list = final_population(40, 10000, distance_matrix)
+    final_list = final_population(100, 500, distance_matrix)
     routes = get_best_route_in_population(final_list, distance_matrix)
     return routes
 

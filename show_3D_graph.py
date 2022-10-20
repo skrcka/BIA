@@ -7,7 +7,7 @@ from static_data import get_ranges
 from func_file import return_value_function
 
 
-def show_funtion_graph(name_function: str, points: list or None = None):
+def show_funtion_graph(name_function: str, points: list or None = None, anim_interval: int = 400):
     start, step, stop = get_ranges(name_function)
     range_list = np.arange(start, stop, step)
     
@@ -43,5 +43,5 @@ def show_funtion_graph(name_function: str, points: list or None = None):
             active_point = ax.scatter(point[0], point[1], point[2], c='red')
 
             return ax
-        ani = FuncAnimation(fig, animate, frames=len(points), interval=400, repeat=True, fargs=[points])
+        ani = FuncAnimation(fig, animate, frames=len(points), interval=anim_interval, repeat=True, fargs=[points])
     plt.show()

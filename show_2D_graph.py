@@ -7,7 +7,7 @@ from static_data import get_ranges
 from func_file import return_value_function
 
 
-def show_2D_graph(routes, points):
+def show_2D_graph(routes, points, anim_interval: int = 400):
     x = []
     y = []
     for i in points:
@@ -34,5 +34,5 @@ def show_2D_graph(routes, points):
             lines.append(p)
 
             return ax
-        ani = FuncAnimation(fig, animate, frames=len(routes), interval=400, repeat=True, fargs=[routes])
+        ani = FuncAnimation(fig, animate, frames=len(routes), interval=anim_interval, repeat=True, fargs=[routes])
     plt.show()
