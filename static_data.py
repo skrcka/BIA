@@ -94,3 +94,5 @@ def get_sigma(name_function):
     if sigmas.get(name_function):
         return sigmas[name_function]
     return 0
+
+X=16

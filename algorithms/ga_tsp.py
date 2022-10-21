@@ -3,13 +3,14 @@ import math
 import random
 import matplotlib.pyplot as plt
 import random
+from static_data import X
 
 
 FILENAME = "datasets/tps_dataset.txt"
 
 def generate_list_values():
     point_list = []
-    for i in range(1, 21):
+    for i in range(1, X+1):
         point_list.append([i, random.randint(0, 300), random.randint(0, 300)])
     return point_list
 
@@ -36,7 +37,7 @@ def create_distance_matrix(list_nodes):
 
 
 def generate_population():
-    return random.sample(range(1, 21), 20)
+    return random.sample(range(1, X+1), X)
 
 
 def generate_list_population(num_population):
@@ -62,7 +63,7 @@ def mutation(x):
 
 def cross_population_gen(list_A, list_B):
     result_list = []
-    cross_point = random.randint(1, 19)
+    cross_point = random.randint(1, X-1)
     result_list = list_A[:cross_point]
     for i in range(len(list_A)):
         if list_B[i] not in result_list:
@@ -73,7 +74,7 @@ def cross_population_gen(list_A, list_B):
 
 def cal_total_dist(list_points, matrix):
     sum = 0
-    for i in range(18):
+    for i in range(X-2):
         sum += matrix[list_points[i] - 1][list_points[i + 1] - 1]
     return sum
 
@@ -136,5 +137,5 @@ def show_final_graph(final_route, points):
     for i in range(len(final_route) - 1):
         plt.plot([x[final_route[i] - 1], x[final_route[i + 1] - 1]], [y[final_route[i] - 1], y[final_route[i + 1] - 1]],
                  'k-')
-    plt.plot([x[final_route[19] - 1], x[final_route[0] - 1]], [y[final_route[19] - 1], y[final_route[0] - 1]], 'k-')
+    plt.plot([x[final_route[X-1] - 1], x[final_route[0] - 1]], [y[final_route[X-1] - 1], y[final_route[0] - 1]], 'k-')
     plt.show()
