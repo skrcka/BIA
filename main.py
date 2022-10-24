@@ -30,7 +30,7 @@ def gen_points(algorithm_name: str, function_name: str):
     return points
 
 if __name__ == '__main__':
-    algorithm_name = 'ga_tsp_anim' # simulated_annealing ga_tsp
+    algorithm_name = 'differential_evolution' # simulated_annealing ga_tsp
     if algorithm_name not in ('ga_tsp', 'ga_tsp_anim'):
         for function_name in func:
             points = gen_points(algorithm_name, function_name)

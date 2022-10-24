@@ -32,15 +32,25 @@ def show_funtion_graph(name_function: str, points: list or None = None, anim_int
             print(f'frame: {i}')
             nonlocal active_point
             if active_point:
-                active_point.remove()
+                if type(active_point) is list:
+                    for ap in active_point:
+                        ap.remove()
+                else:
+                    active_point.remove()
 
             ax.set_xlabel('X')
             ax.set_ylabel('Y')
             ax.set_zlabel('Z')
             
             point = points[i]
-            print(point[2])
-            active_point = ax.scatter(point[0], point[1], point[2], c='red')
+            print(type(point))
+            if type(point[0]) is list:
+                active_point = []
+                for p in point:
+                    active_point.append(ax.scatter(p[0], p[1], p[2], c='red'))
+            else:
+                print(point)
+                active_point = ax.scatter(point[0], point[1], point[2], c='red')
 
             return ax
         ani = FuncAnimation(fig, animate, frames=len(points), interval=anim_interval, repeat=True, fargs=[points])
