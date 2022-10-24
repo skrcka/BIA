@@ -43,7 +43,6 @@ def show_funtion_graph(name_function: str, points: list or None = None, anim_int
             ax.set_zlabel('Z')
             
             point = points[i]
-            print(type(point))
             if type(point[0]) is list:
                 active_point = []
                 for p in point:
