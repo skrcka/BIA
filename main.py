@@ -34,7 +34,7 @@ if __name__ == '__main__':
     if algorithm_name not in ('ga_tsp', 'ga_tsp_anim'):
         for function_name in func:
             points = gen_points(algorithm_name, function_name)
-            show_funtion_graph(function_name, points)
+            show_funtion_graph(function_name, points, 50)
     elif algorithm_name == 'ga_tsp':
         filename = 'datasets/tps_dataset.txt'
         point_list = get_list_values(filename)
