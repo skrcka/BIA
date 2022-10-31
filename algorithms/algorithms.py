@@ -6,6 +6,7 @@ from static_data import get_max_range, get_min_range, get_sigma
 from func_file import return_value_function
 from algorithms.ga_tsp import *
 from algorithms.differential_evolution import *
+from algorithms.particle_swarm_optimization import PSO
 
 
 def blind_search(name_function: str, size_random_search: int):
@@ -87,7 +88,6 @@ def simulated_annealing(name_function, mux, muy, sigma, size, temperature, itera
     return point_list
 
 def ga_tsp_anim(point_list):
-    print(point_list)
     distance_matrix = create_distance_matrix(point_list)
     final_list = get_population_anim(100, 500, distance_matrix)
     final_routes = []
@@ -96,7 +96,6 @@ def ga_tsp_anim(point_list):
     return final_routes
 
 def ga_tsp(point_list):
-    print(point_list)
     distance_matrix = create_distance_matrix(point_list)
     final_list = final_population(100, 500, distance_matrix)
     routes = get_best_route_in_population(final_list, distance_matrix)
@@ -112,6 +111,15 @@ def differential_evolution(function_name):
     # show_3D_graph.show_graph_with_searched_point_3D(FUNC, final_points)
     return all_points
 
+def particle_swarm_optimization(function_name):
+    DIM = 2
+    POPSIZE = 50
+    ITERATION = 50
+    VMAX = 1
+
+    all_points = PSO(function_name, DIM, POPSIZE, ITERATION, VMAX)
+    return all_points
+
 functions = {
     'blind_search': blind_search,
     'hill_climbing': hill_climbing,
@@ -119,6 +127,7 @@ functions = {
     'ga_tsp': ga_tsp,
     'ga_tsp_anim': ga_tsp_anim,
     'differential_evolution': differential_evolution,
+    'particle_swarm_optimization': particle_swarm_optimization,
 }
 
 def get_function(function_name: str):

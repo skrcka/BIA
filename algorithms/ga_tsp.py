@@ -99,7 +99,6 @@ def cross_population(list_population, population_size, matrix):
 def final_population(population_size, gen_count, matrix):
     list_population = generate_list_population(population_size)
     for i in range(gen_count):
-        print(i)
         list_population = cross_population(list_population, population_size, matrix)
     return list_population
 
@@ -107,7 +106,6 @@ def get_population_anim(population_size, gen_count, matrix):
     list_population = generate_list_population(population_size)
     populations = [list_population]
     for i in range(gen_count):
-        print(i)
         list_population = cross_population(list_population, population_size, matrix)
         populations.append(list_population)
     return populations
@@ -121,7 +119,6 @@ def get_best_route_in_population(list_population, matrix):
         if min > dist:
             min = dist
             best_route = i
-    print("")
     print("Min:" + str(min))
     print(best_route)
     return best_route
