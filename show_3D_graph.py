@@ -48,7 +48,6 @@ def show_funtion_graph(name_function: str, points: list or None = None, anim_int
                 for p in point:
                     active_point.append(ax.scatter(p[0], p[1], p[2], c='red'))
             else:
-                print(point)
                 active_point = ax.scatter(point[0], point[1], point[2], c='red')
 
             return ax
