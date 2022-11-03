@@ -17,7 +17,8 @@ def de(func, dimension, popsize, generations, scaling_vector):
     while num_generation < generations:
         new_population = []
         for i in range(popsize):
-            parent = random.sample(range(popsize), 3)
+            parent = random.sample( [k for k in range(popsize) if k != i], 3)
+            print(parent)
 
             parents = [population[x] for x in parent]
             mutation_v = mutation_pop(parents, dimension, scaling_vector, func)

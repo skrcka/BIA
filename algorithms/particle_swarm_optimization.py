@@ -9,7 +9,7 @@ import static_data
 C1 = 2
 C2 = 2
 
-def PSO(func, dim, popSize, iteration, vmax):
+def PSO(func, dim, popSize, iteration, vmin, vmax):
     population = generate_first_population(func, popSize, dim)
     gBest = find_best_in_list(population, func)
     new_population = []
@@ -33,8 +33,16 @@ def PSO(func, dim, popSize, iteration, vmax):
 
 
             for m in range(dim):
-                if new_velocity[m] > vmax or new_velocity[m] < -vmax:
-                    new_velocity[m] = new_velocity[m] / 20
+                if new_velocity[m] >= 0:
+                    if new_velocity[m] > vmax:
+                        new_velocity[m] = vmax
+                    if new_velocity[m] < vmin:
+                        new_velocity[m] = vmin
+                else:
+                    if new_velocity[m] < -vmax:
+                        new_velocity[m] = -vmax
+                    if new_velocity[m] > -vmin:
+                        new_velocity[m] = -vmin
 
             for i in range(dim):
                 if new_point[i] > static_data.get_max_range(func):

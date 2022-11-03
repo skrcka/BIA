@@ -116,8 +116,9 @@ def particle_swarm_optimization(function_name):
     POPSIZE = 50
     ITERATION = 50
     VMAX = 1
+    VMIN = -1
 
-    all_points = PSO(function_name, DIM, POPSIZE, ITERATION, VMAX)
+    all_points = PSO(function_name, DIM, POPSIZE, ITERATION, VMIN, VMAX)
     return all_points
 
 functions = {
