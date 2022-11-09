@@ -28,11 +28,13 @@ def gen_points(algorithm_name: str, function_name: str):
         points = get_function('differential_evolution')(function_name)
     elif algorithm_name == 'particle_swarm_optimization':
         points = get_function('particle_swarm_optimization')(function_name)
+    elif algorithm_name == 'soma':
+        points = get_function('soma')(function_name)
     #print(points)
     return points
 
 if __name__ == '__main__':
-    algorithm_name = 'particle_swarm_optimization' # differential_evolution particle_swarm_optimization
+    algorithm_name = 'soma' # differential_evolution particle_swarm_optimization
     if algorithm_name not in ('ga_tsp', 'ga_tsp_anim'):
         for function_name in func:
             points = gen_points(algorithm_name, function_name)

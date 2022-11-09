@@ -7,6 +7,7 @@ from func_file import return_value_function
 from algorithms.ga_tsp import *
 from algorithms.differential_evolution import *
 from algorithms.particle_swarm_optimization import PSO
+from algorithms.soma import SOMA
 
 
 def blind_search(name_function: str, size_random_search: int):
@@ -121,6 +122,11 @@ def particle_swarm_optimization(function_name):
     all_points = PSO(function_name, DIM, POPSIZE, ITERATION, VMIN, VMAX)
     return all_points
 
+def soma(func):
+    POPSIZE = 10
+    DIM = 2
+    return SOMA(func, POPSIZE, DIM)
+
 functions = {
     'blind_search': blind_search,
     'hill_climbing': hill_climbing,
@@ -129,6 +135,7 @@ functions = {
     'ga_tsp_anim': ga_tsp_anim,
     'differential_evolution': differential_evolution,
     'particle_swarm_optimization': particle_swarm_optimization,
+    'soma': soma,
 }
 
 def get_function(function_name: str):
