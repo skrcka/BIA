@@ -1,6 +1,0 @@
-clamp- fixed
-sigma podle fce - fixed ?
-step podle fce - fixed
-rosenbrock - fixed
-fce celkove checknout - fixed
-uniformni rozdeleni - fixed

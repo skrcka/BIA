@@ -8,6 +8,7 @@ from algorithms.ga_tsp import *
 from algorithms.differential_evolution import *
 from algorithms.particle_swarm_optimization import PSO
 from algorithms.soma import SOMA
+from algorithms.firefly import FIREFLY
 
 
 def blind_search(name_function: str, size_random_search: int):
@@ -127,6 +128,9 @@ def soma(func):
     DIM = 2
     return SOMA(func, POPSIZE, DIM)
 
+def firefly(func):
+    return FIREFLY(2, get_min_range(func), get_max_range(func), func, 100, 10)
+
 functions = {
     'blind_search': blind_search,
     'hill_climbing': hill_climbing,
@@ -136,6 +140,7 @@ functions = {
     'differential_evolution': differential_evolution,
     'particle_swarm_optimization': particle_swarm_optimization,
     'soma': soma,
+    'firefly': firefly,
 }
 
 def get_function(function_name: str):
