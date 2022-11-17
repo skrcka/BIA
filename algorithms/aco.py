@@ -11,7 +11,7 @@ NUM_ANTS = 50
 EVAPORATION = 0.5
 ALPHA = 1
 BETA = 2
-POINT_COUNT = 21
+POINT_COUNT = 12
 
 
 def generate_list_values():
@@ -108,7 +108,7 @@ def show_final_graph(final_route, list_nodes):
     for i in range(len(final_route) - 1):
         plt.plot([x[final_route[i] - 1], x[final_route[i + 1] - 1]], [y[final_route[i] - 1], y[final_route[i + 1] - 1]],
                  'k-')
-    plt.plot([x[final_route[19] - 1], x[final_route[0] - 1]], [y[final_route[19] - 1], y[final_route[0] - 1]], 'k-')
+    plt.plot([x[final_route[POINT_COUNT-1] - 1], x[final_route[0] - 1]], [y[final_route[POINT_COUNT-1] - 1], y[final_route[0] - 1]], 'k-')
     plt.show()
 
 def show_final_graph_2(routes, points, anim_interval: int = 400):
