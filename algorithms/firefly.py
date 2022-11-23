@@ -36,8 +36,14 @@ def FIREFLY(d, min_, max_, function, g_max, popsize, alpha = 0.3, b_0 = 1):
                     pop[i] = np.clip(pop[i] + (b_0 / (1 + distance(pop[i], pop[j]))) * (pop[j] - pop[i]) + alpha * normal(d), static_data.get_min_range(function), static_data.get_max_range(function))
 
                 lights[i] = func_file.return_value_function(pop[i], function)
-        best = list(get_best(pop, lights))
-        best.append(func_file.return_value_function(best, function))
-        result.append(best)
+        append_pop = []
+        for p in pop:
+            pc = list(p.copy())
+            print(pc)
+            pc.append(func_file.return_value_function(pc, function))
+            append_pop.append(pc)
+        #best = list(get_best(pop, lights))
+        #best.append(func_file.return_value_function(best, function))
+        result.append(append_pop)
 
     return result
